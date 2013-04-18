@@ -11,6 +11,8 @@ LUSBC_DIR = libusb-compat-0.1.4
 LHID_TB = libhid-0.2.16.tar.gz
 LHID_DIR = libhid-0.2.16
 
+OVR_DIR = override
+
 all: libusb libusb-compat libhid
 
 libusb:
@@ -27,8 +29,8 @@ libusb-compat:
 
 libhid:
 	$(UNTAR) $(LHID_TB)
+	cp $(OVR_DIR)/lshid.c $(LHID_DIR)/test/
 	cd $(LHID_DIR); $(CONFIG); cd ..;
-	$(MAKE) -C $(LHID_DIR)
 	sudo $(MAKE) install -C $(LHID_DIR)
 
 clean:
